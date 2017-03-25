@@ -15,7 +15,4 @@ public class FilePathMapper {
         return outputDir + inputFilePath.substring(inputDir.length()) + "." + zipType;
     }
 
-    public String getOutputDirPath(String inputDirPath) {
-        return outputDir + inputDirPath.substring(inputDir.length());
-    }
 }
