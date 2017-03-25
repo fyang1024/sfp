@@ -49,7 +49,6 @@ class FileProcessor {
                 processLog.logCompletedHandlers(file, completedHandlers);
                 LOGGER.log(Level.INFO, "{0} is already processed.", file.getAbsolutePath());
             } else {
-                file.getParentFile().mkdirs();
                 try {
                     List<String> justCompletedHandlers = chain.handle(file, completedHandlers);
                     completedHandlers.addAll(justCompletedHandlers);
