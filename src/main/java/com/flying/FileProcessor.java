@@ -39,8 +39,6 @@ class FileProcessor {
         if (file.isDirectory()) {
             File[] children = file.listFiles(fileFilter);
             if (children != null && children.length > 0) {
-                File outputDir = new File(filePathMapper.getOutputDirPath(file.getAbsolutePath()));
-                outputDir.mkdirs();
                 for (File child : children) {
                     doProcess(child, fileFilter, chain, processLog, filePathMapper);
                 }
@@ -51,6 +49,7 @@ class FileProcessor {
                 processLog.logCompletedHandlers(file, completedHandlers);
                 LOGGER.log(Level.INFO, "{0} is already processed.", file.getAbsolutePath());
             } else {
+                file.getParentFile().mkdirs();
                 try {
                     List<String> justCompletedHandlers = chain.handle(file, completedHandlers);
                     completedHandlers.addAll(justCompletedHandlers);
